@@ -91,16 +91,11 @@ impl HotKey {
             mods.insert(Modifiers::SUPER);
         }
 
-        let mut hotkey = Self { mods, key, id: 0 };
-        hotkey.id = hotkey.generate_hash();
-        hotkey
-    }
-
-    fn generate_hash(&self) -> u32 {
-        let hotkey_str = self.into_string();
-        let mut hasher = std::collections::hash_map::DefaultHasher::new();
-        hotkey_str.hash(&mut hasher);
-        std::hash::Hasher::finish(&hasher) as u32
+        Self {
+            mods,
+            key,
+            id: mods.bits() << 16 | key as u32,
+        }
     }
 
     /// Returns the id associated with this hotKey
