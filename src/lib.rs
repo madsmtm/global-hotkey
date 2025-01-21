@@ -93,8 +93,8 @@ impl GlobalHotKeyEvent {
     pub fn id(&self) -> u32 {
         self.id
     }
-    /// Returns the state of the associated [`HotKey`].
 
+    /// Returns the state of the associated [`HotKey`].
     pub fn state(&self) -> HotKeyState {
         self.state
     }
